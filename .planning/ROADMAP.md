@@ -41,11 +41,10 @@ Plans:
   2. Clicking extension icon again hides the sidebar
   3. Clicking X button in sidebar header closes the sidebar
   4. Toggle works correctly on any webpage
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 02-01: Content script injection and message passing
-- [ ] 02-02: Toggle state management
+- [ ] 02-01-PLAN.md — Content script injection, message passing, and toggle logic
 
 ### Phase 3: Sidebar Container
 **Goal**: Sidebar appears as a fixed overlay on the right side with proper positioning and style isolation
@@ -113,8 +112,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Extension Foundation | 1/1 | ✓ Complete | 2026-01-29 |
-| 2. Toggle Behavior | 0/2 | Not started | - |
+| 1. Extension Foundation | 1/1 | Complete | 2026-01-29 |
+| 2. Toggle Behavior | 0/1 | Not started | - |
 | 3. Sidebar Container | 0/2 | Not started | - |
 | 4. UI Structure | 0/2 | Not started | - |
 | 5. Data Display | 0/2 | Not started | - |
@@ -122,4 +121,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 ---
 *Roadmap created: 2026-01-29*
-*Last updated: 2026-01-29 after Phase 1 completion*
+*Last updated: 2026-01-29 after Phase 2 planning*
