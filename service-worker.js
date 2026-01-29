@@ -8,7 +8,24 @@ chrome.runtime.onInstalled.addListener((details) => {
   console.log('Extension installed:', details.reason);
 });
 
-// Placeholder for future message handling (Phase 2)
+// Handle extension icon click
+chrome.action.onClicked.addListener(async (tab) => {
+  // First, inject the content script (if not already injected)
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ['content-script.js']
+    });
+  } catch (err) {
+    // Script may already be injected, that's OK
+    console.log('Script injection:', err.message);
+  }
+
+  // Then send toggle message
+  chrome.tabs.sendMessage(tab.id, { action: 'toggle-sidebar' });
+});
+
+// Placeholder for future message handling
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Message received:', message);
   return false;
