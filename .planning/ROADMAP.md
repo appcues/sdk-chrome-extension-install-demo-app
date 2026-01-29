@@ -56,11 +56,10 @@ Plans:
   3. Sidebar overlays page content without pushing it
   4. Host page CSS does not affect sidebar appearance
   5. Sidebar has smooth open/close animation
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 03-01: React mount point and Shadow DOM isolation
-- [ ] 03-02: Positioning and animation
+- [ ] 03-01-PLAN.md — Shadow DOM isolation and open/close animations
 
 ### Phase 4: UI Structure
 **Goal**: Sidebar has header with close button, search input, and filter controls
@@ -113,12 +112,12 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Extension Foundation | 1/1 | Complete | 2026-01-29 |
-| 2. Toggle Behavior | 1/1 | ✓ Complete | 2026-01-29 |
-| 3. Sidebar Container | 0/2 | Not started | - |
+| 2. Toggle Behavior | 1/1 | Complete | 2026-01-29 |
+| 3. Sidebar Container | 0/1 | Not started | - |
 | 4. UI Structure | 0/2 | Not started | - |
 | 5. Data Display | 0/2 | Not started | - |
 | 6. Visual Polish | 0/1 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-29*
-*Last updated: 2026-01-29 after Phase 2 completion*
+*Last updated: 2026-01-29 after Phase 3 planning*
