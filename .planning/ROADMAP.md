@@ -10,7 +10,7 @@ This roadmap delivers a polished Chrome extension sidebar that demonstrates a sa
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Extension Foundation** - Chrome extension that installs with Manifest v3 and service worker
+- [x] **Phase 1: Extension Foundation** - Chrome extension that installs with Manifest v3 and service worker
 - [ ] **Phase 2: Toggle Behavior** - Click extension icon to show/hide sidebar
 - [ ] **Phase 3: Sidebar Container** - Positioned, isolated, animated sidebar shell
 - [ ] **Phase 4: UI Structure** - Header, search bar, and filter dropdowns
@@ -30,7 +30,7 @@ This roadmap delivers a polished Chrome extension sidebar that demonstrates a sa
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md — Manifest v3 setup, service worker, and icons
+- [x] 01-01-PLAN.md — Manifest v3 setup, service worker, and icons
 
 ### Phase 2: Toggle Behavior
 **Goal**: User can show and hide the sidebar by clicking extension icon or X button
@@ -113,7 +113,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Extension Foundation | 0/1 | Planned | - |
+| 1. Extension Foundation | 1/1 | ✓ Complete | 2026-01-29 |
 | 2. Toggle Behavior | 0/2 | Not started | - |
 | 3. Sidebar Container | 0/2 | Not started | - |
 | 4. UI Structure | 0/2 | Not started | - |
@@ -122,4 +122,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 ---
 *Roadmap created: 2026-01-29*
-*Last updated: 2026-01-29*
+*Last updated: 2026-01-29 after Phase 1 completion*
