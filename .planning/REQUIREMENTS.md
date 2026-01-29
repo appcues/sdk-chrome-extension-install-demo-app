@@ -11,9 +11,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **EXT-01**: Extension installs in Chrome using Manifest v3
 - [x] **EXT-02**: Extension uses service worker (not background page)
-- [ ] **EXT-03**: Clicking extension icon injects sidebar into current page
-- [ ] **EXT-04**: Clicking extension icon again hides the sidebar
-- [ ] **EXT-05**: Sidebar has X button in header that closes it
+- [x] **EXT-03**: Clicking extension icon injects sidebar into current page
+- [x] **EXT-04**: Clicking extension icon again hides the sidebar
+- [x] **EXT-05**: Sidebar has X button in header that closes it
 
 ### Sidebar Container
 
@@ -62,9 +62,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | EXT-01 | Phase 1 | Complete |
 | EXT-02 | Phase 1 | Complete |
-| EXT-03 | Phase 2 | Pending |
-| EXT-04 | Phase 2 | Pending |
-| EXT-05 | Phase 2 | Pending |
+| EXT-03 | Phase 2 | Complete |
+| EXT-04 | Phase 2 | Complete |
+| EXT-05 | Phase 2 | Complete |
 | SIDE-01 | Phase 3 | Pending |
 | SIDE-02 | Phase 3 | Pending |
 | SIDE-03 | Phase 3 | Pending |
@@ -85,4 +85,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-29*
-*Last updated: 2026-01-29 after Phase 1 completion*
+*Last updated: 2026-01-29 after Phase 2 completion*
