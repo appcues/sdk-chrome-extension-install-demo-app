@@ -27,10 +27,10 @@ This roadmap delivers a polished Chrome extension sidebar that demonstrates a sa
   1. Extension loads in Chrome via chrome://extensions in developer mode
   2. Extension icon appears in Chrome toolbar
   3. Service worker runs without errors (no background page)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 01-01: Manifest v3 setup and service worker
+- [ ] 01-01-PLAN.md — Manifest v3 setup, service worker, and icons
 
 ### Phase 2: Toggle Behavior
 **Goal**: User can show and hide the sidebar by clicking extension icon or X button
@@ -113,7 +113,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Extension Foundation | 0/1 | Not started | - |
+| 1. Extension Foundation | 0/1 | Planned | - |
 | 2. Toggle Behavior | 0/2 | Not started | - |
 | 3. Sidebar Container | 0/2 | Not started | - |
 | 4. UI Structure | 0/2 | Not started | - |
