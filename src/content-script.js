@@ -104,6 +104,31 @@ const dashboardMetrics = [
   }
 ];
 
+// Checkmark icon for completed tasks
+const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>';
+
+// Transaction type icons
+const transactionIcons = {
+  income: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>',
+  expense: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" /></svg>',
+  software: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>'
+};
+
+// Mock tasks data
+const mockTasks = [
+  { id: 1, title: 'Review Q4 sales report', meta: 'Due today', priority: 'high', completed: false },
+  { id: 2, title: 'Update team expense policy', meta: 'Due tomorrow', priority: 'medium', completed: false },
+  { id: 3, title: 'Schedule payroll review meeting', meta: 'Due in 3 days', priority: 'low', completed: true },
+  { id: 4, title: 'Prepare monthly budget summary', meta: 'Due next week', priority: 'medium', completed: false }
+];
+
+// Mock transactions data
+const mockTransactions = [
+  { id: 1, name: 'Client Payment', date: 'Today', amount: '+$4,500', type: 'income', icon: transactionIcons.income },
+  { id: 2, name: 'Office Supplies', date: 'Yesterday', amount: '-$245', type: 'expense', icon: transactionIcons.expense },
+  { id: 3, name: 'Software License', date: 'Mar 15', amount: '-$99', type: 'expense', icon: transactionIcons.software }
+];
+
 // Use case data for home view
 const useCases = [
   {
@@ -203,6 +228,68 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
   }
 
   /**
+   * Renders the Tasks panel widget
+   * @returns {string} HTML string for tasks panel
+   */
+  function renderTasksPanel() {
+    return `
+      <div class="widget-panel">
+        <div class="widget-header">
+          <span class="widget-title">Tasks</span>
+          <span class="widget-action">View all</span>
+        </div>
+        <div class="tasks-list">
+          ${mockTasks.map(task => `
+            <div class="task-item ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
+              <div class="task-checkbox ${task.completed ? 'checked' : ''}">
+                ${checkIcon}
+              </div>
+              <div class="task-content">
+                <div class="task-title">${task.title}</div>
+                <div class="task-meta">${task.meta}</div>
+              </div>
+              <span class="task-priority ${task.priority}">${task.priority}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * Renders the Transactions widget
+   * @returns {string} HTML string for transactions widget
+   */
+  function renderTransactionsWidget() {
+    return `
+      <div class="widget-panel">
+        <div class="widget-header">
+          <span class="widget-title">Transactions</span>
+          <span class="widget-action">View all</span>
+        </div>
+        <div class="transactions-balance">
+          <div class="balance-label">Current Balance</div>
+          <div class="balance-value">$32,450</div>
+        </div>
+        <div class="transactions-list">
+          ${mockTransactions.map(tx => `
+            <div class="transaction-item">
+              <div class="transaction-info">
+                <div class="transaction-icon">${tx.icon}</div>
+                <div>
+                  <div class="transaction-name">${tx.name}</div>
+                  <div class="transaction-date">${tx.date}</div>
+                </div>
+              </div>
+              <div class="transaction-amount ${tx.type}">${tx.amount}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
    * Renders the Home view content
    * @returns {string} HTML string for home view
    */
@@ -265,10 +352,8 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
           <div class="dashboard-content">
             ${renderMetricsRow()}
             <div class="widgets-row">
-              <!-- Tasks panel and Transactions widget will be added in Task 2 -->
-              <div style="grid-column: span 2; text-align: center; color: #9CA3AF; padding: 40px; background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 12px;">
-                Tasks panel coming soon...
-              </div>
+              ${renderTasksPanel()}
+              ${renderTransactionsWidget()}
             </div>
           </div>
         </div>
@@ -792,11 +877,178 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         height: 12px;
       }
 
-      /* Widget Panels (placeholder for Task 2) */
+      /* Widget Panels */
       .widgets-row {
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 20px;
+      }
+      .widget-panel {
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .widget-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid #E5E7EB;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .widget-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #111827;
+      }
+      .widget-action {
+        font-size: 13px;
+        color: #6366F1;
+        cursor: pointer;
+        font-weight: 500;
+      }
+      .widget-action:hover {
+        text-decoration: underline;
+      }
+
+      /* Tasks List */
+      .tasks-list {
+        padding: 8px 0;
+      }
+      .task-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      .task-item:hover {
+        background: #F9FAFB;
+      }
+      .task-checkbox {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #D1D5DB;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.15s ease;
+      }
+      .task-checkbox.checked {
+        background: #6366F1;
+        border-color: #6366F1;
+      }
+      .task-checkbox.checked svg {
+        color: white;
+      }
+      .task-checkbox svg {
+        width: 12px;
+        height: 12px;
+        opacity: 0;
+      }
+      .task-checkbox.checked svg {
+        opacity: 1;
+      }
+      .task-content {
+        flex: 1;
+      }
+      .task-title {
+        font-size: 14px;
+        color: #111827;
+        margin-bottom: 2px;
+      }
+      .task-item.completed .task-title {
+        color: #9CA3AF;
+        text-decoration: line-through;
+      }
+      .task-meta {
+        font-size: 12px;
+        color: #9CA3AF;
+      }
+      .task-priority {
+        padding: 2px 8px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 500;
+      }
+      .task-priority.high {
+        background: #FEE2E2;
+        color: #DC2626;
+      }
+      .task-priority.medium {
+        background: #FEF3C7;
+        color: #D97706;
+      }
+      .task-priority.low {
+        background: #D1FAE5;
+        color: #059669;
+      }
+
+      /* Transactions Widget */
+      .transactions-balance {
+        padding: 24px 20px;
+        text-align: center;
+        border-bottom: 1px solid #E5E7EB;
+      }
+      .balance-label {
+        font-size: 13px;
+        color: #6B7280;
+        margin-bottom: 4px;
+      }
+      .balance-value {
+        font-size: 32px;
+        font-weight: 600;
+        color: #111827;
+      }
+      .transactions-list {
+        padding: 8px 0;
+      }
+      .transaction-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+      }
+      .transaction-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .transaction-icon {
+        width: 36px;
+        height: 36px;
+        background: #F3F4F6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6B7280;
+      }
+      .transaction-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .transaction-name {
+        font-size: 14px;
+        color: #111827;
+        font-weight: 500;
+      }
+      .transaction-date {
+        font-size: 12px;
+        color: #9CA3AF;
+      }
+      .transaction-amount {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .transaction-amount.income {
+        color: #059669;
+      }
+      .transaction-amount.expense {
+        color: #DC2626;
       }
     `;
 
