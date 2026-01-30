@@ -472,34 +472,32 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         opacity: 1;
       }
 
-      /* Modal Container */
+      /* Modal Container (Right-side Sidebar) */
       .modal {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.95);
-        width: 90vw;
-        max-width: 1200px;
-        height: 85vh;
-        max-height: 800px;
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+        width: 600px;
+        height: 100vh;
         background: linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%);
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
         z-index: 2147483647;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         opacity: 0;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        transition: transform 0.3s ease-out, opacity 0.3s ease;
         display: flex;
         flex-direction: column;
         font-size: 14px;
         line-height: 1.5;
         color: #1F2937;
-        border-radius: 16px;
+        border-radius: 0;
         overflow: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       .modal.open {
-        transform: translate(-50%, -50%) scale(1);
+        transform: translateX(0);
         opacity: 1;
       }
 
