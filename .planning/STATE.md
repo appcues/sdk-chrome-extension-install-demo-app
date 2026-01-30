@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-29)
 ## Current Position
 
 Phase: 7 of 7 (Appcues UI Refactor)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-30 - Completed 07-01-PLAN.md (Modal Overlay Foundation)
+Last activity: 2026-01-30 - Completed 07-02-PLAN.md (Home View with Use-Case Cards)
 
-Progress: [██████░---] 65% (7 of 10 total plans complete)
+Progress: [████████░-] 80% (8 of 10 total plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: ~6.9 min
-- Total execution time: ~48 min
+- Total plans completed: 8
+- Average duration: ~6.3 min
+- Total execution time: ~50 min
 
 **By Phase:**
 
@@ -33,10 +33,10 @@ Progress: [██████░---] 65% (7 of 10 total plans complete)
 | 04-ui-structure | 1/1 | ~5 min | ~5 min |
 | 05-data-display | 1/1 | ~8 min | ~8 min |
 | 06-visual-polish | 1/1 | ~10 min | ~10 min |
-| 07-appcues-ui-refactor | 1/4 | ~2 min | ~2 min |
+| 07-appcues-ui-refactor | 2/4 | ~4 min | ~2 min |
 
 **Recent Trend:**
-- 7 plans completed
+- 8 plans completed
 - Trend: Stable, consistent execution
 
 *Updated after each plan completion*
@@ -60,6 +60,9 @@ Recent decisions affecting current work:
 - **[07-01]** Modal dimensions: 90vw max 1200px width, 85vh max 800px height
 - **[07-01]** View state pattern: simple currentView variable with render functions
 - **[07-01]** Backdrop click-to-close behavior
+- **[07-02]** Heroicons SVG inline for card icons (no external dependencies)
+- **[07-02]** Data-driven card rendering from useCases array
+- **[07-02]** Module-scope selectedUseCase state variable for tracking selection
 
 ### Pending Todos
 
@@ -76,17 +79,15 @@ None
 ## Session Continuity
 
 Last session: 2026-01-30
-Stopped at: Completed 07-01-PLAN.md
+Stopped at: Completed 07-02-PLAN.md
 Resume file: None
 
 ## Next Steps
 
-1. Execute 07-02-PLAN.md - Home view with use-case cards
-2. Execute 07-03-PLAN.md - Dashboard view implementation
-3. Execute 07-04-PLAN.md - View navigation
+1. Execute 07-03-PLAN.md - Dashboard view implementation
+2. Execute 07-04-PLAN.md - View navigation polish
 
 **Phase 7 remaining scope:**
-- Home view: "Choose a use case" with 5 cards
 - Dashboard view: sidebar nav + metric cards + tasks + transactions
-- View navigation (client-side routing between views)
+- View navigation polish and routing refinements
 - Match Appcues visual style (Streamline icons, modern typography)
