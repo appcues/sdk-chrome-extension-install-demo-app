@@ -85,10 +85,19 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
   }
 
   /**
+   * Valid view names for the application
+   */
+  const VALID_VIEWS = ['home', 'dashboard'];
+
+  /**
    * Navigates to a specific view
    * @param {string} view - The view to navigate to ('home' | 'dashboard')
    */
   function navigateTo(view) {
+    if (!VALID_VIEWS.includes(view)) {
+      console.warn(`Democues: Invalid view "${view}", defaulting to home`);
+      view = 'home';
+    }
     currentView = view;
     renderCurrentView();
   }
