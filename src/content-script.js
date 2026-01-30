@@ -426,6 +426,16 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
           // For demo, we don't actually change content - just visual feedback
         });
       });
+
+      // Task item checkbox toggle
+      const taskItems = shadowRootRef.querySelectorAll('.task-item');
+      taskItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const checkbox = item.querySelector('.task-checkbox');
+          checkbox.classList.toggle('checked');
+          item.classList.toggle('completed');
+        });
+      });
     }
   }
 
