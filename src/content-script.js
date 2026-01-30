@@ -585,7 +585,7 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
 
       /* Home View */
       .home-view {
-        padding: 48px 40px;
+        padding: 32px 24px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -607,10 +607,10 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
       }
       .use-cases-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 20px;
         width: 100%;
-        max-width: 900px;
+        max-width: 100%;
       }
       .use-case-card {
         background: #FFFFFF;
@@ -660,7 +660,7 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         overflow: hidden;
       }
       .dashboard-sidebar {
-        width: 240px;
+        width: 200px;
         background: #FFFFFF;
         border-right: 1px solid #E5E7EB;
         display: flex;
@@ -835,7 +835,7 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
       /* Metric Cards */
       .metrics-row {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         margin-bottom: 24px;
       }
@@ -888,7 +888,7 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
       /* Widget Panels */
       .widgets-row {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr;
         gap: 20px;
       }
       .widget-panel {
