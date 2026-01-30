@@ -117,7 +117,7 @@ Plans:
   7. Transactions widget showing balance
   8. Visual style matches Appcues: Streamline icons, modern typography, clean card design
   9. Client-side view navigation (no real pages, just view switching)
-  10. Existing client-side filters remain functional
+  10. Old sidebar UI (search, filters, contact cards) is removed and replaced by new Appcues-style UI
 **Plans**: 4 plans
 
 Plans:
