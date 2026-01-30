@@ -17,6 +17,7 @@ This roadmap delivers a polished Chrome extension sidebar that demonstrates a sa
 - [x] **Phase 5: Data Display** - Contact cards and data table with mock data
 - [x] **Phase 6: Visual Polish** - Professional Cognism-style aesthetic
 - [x] **Phase 7: Appcues UI Refactor** - Top overlay with Home and Dashboard views
+- [x] **Phase 8: Sidebar Layout** - Convert modal to 600px right-side sidebar
 
 ## Phase Details
 
@@ -142,10 +143,25 @@ Plans:
 - Expenses/Mileage sections
 - "Upload my data" toggle button
 
+### Phase 8: Sidebar Layout
+**Goal**: Convert centered modal overlay back to right-side sidebar with 600px width
+**Depends on**: Phase 7
+**Requirements**: LAYOUT-01 through LAYOUT-05
+**Success Criteria** (what must be TRUE):
+  1. Extension opens as fixed right-side sidebar instead of centered modal
+  2. Sidebar width is 600px
+  3. Sidebar overlays page content without pushing it
+  4. All Appcues-style UI (Home view, Dashboard view, widgets) is preserved
+  5. Smooth open/close slide animation from right side
+**Plans**: 1 plan
+
+Plans:
+- [x] 08-01-PLAN.md — Convert modal to 600px right-side sidebar with slide animation
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -156,7 +172,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 5. Data Display | 1/1 | Complete | 2026-01-29 |
 | 6. Visual Polish | 1/1 | Complete | 2026-01-29 |
 | 7. Appcues UI Refactor | 4/4 | Complete | 2026-01-30 |
+| 8. Sidebar Layout | 1/1 | Complete | 2026-01-30 |
 
 ---
 *Roadmap created: 2026-01-29*
-*Last updated: 2026-01-30 - MILESTONE COMPLETE - All 7 phases finished*
+*Last updated: 2026-01-30 - MILESTONE COMPLETE - All 8 phases finished*
