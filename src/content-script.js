@@ -252,12 +252,22 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         });
       });
     } else if (currentView === 'dashboard') {
-      const backBtn = shadowRootRef.querySelector('.back-to-home-btn');
-      if (backBtn) {
-        backBtn.addEventListener('click', () => {
-          navigateTo('home');
-        });
+      // Breadcrumb "Home" link
+      const homeLink = shadowRootRef.querySelector('[data-action="go-home"]');
+      if (homeLink) {
+        homeLink.addEventListener('click', () => navigateTo('home'));
       }
+
+      // Sidebar nav items (visual feedback - active state toggle)
+      const navItemElements = shadowRootRef.querySelectorAll('.nav-item');
+      navItemElements.forEach(item => {
+        item.addEventListener('click', () => {
+          // Remove active from all, add to clicked
+          navItemElements.forEach(n => n.classList.remove('active'));
+          item.classList.add('active');
+          // For demo, we don't actually change content - just visual feedback
+        });
+      });
     }
   }
 
@@ -623,6 +633,32 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         flex: 1;
         padding: 24px;
         overflow-y: auto;
+      }
+      .dashboard-content::-webkit-scrollbar {
+        width: 6px;
+      }
+      .dashboard-content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .dashboard-content::-webkit-scrollbar-thumb {
+        background: #D1D5DB;
+        border-radius: 3px;
+      }
+      .dashboard-content::-webkit-scrollbar-thumb:hover {
+        background: #9CA3AF;
+      }
+      .dashboard-sidebar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .dashboard-sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .dashboard-sidebar::-webkit-scrollbar-thumb {
+        background: #D1D5DB;
+        border-radius: 3px;
+      }
+      .dashboard-sidebar::-webkit-scrollbar-thumb:hover {
+        background: #9CA3AF;
       }
       .content-grid {
         display: grid;
