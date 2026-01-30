@@ -75,6 +75,7 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
 
   // View state
   let currentView = 'home'; // 'home' | 'dashboard'
+  let selectedUseCase = null; // Tracks which use case the user clicked
 
   /**
    * Renders the Home view content
@@ -103,10 +104,19 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
    * @returns {string} HTML string for dashboard view
    */
   function renderDashboardView() {
+    const useCaseTitle = useCases.find(uc => uc.id === selectedUseCase)?.title || 'Dashboard';
     return `
-      <div class="view dashboard-view">
-        <h2 class="view-title">Dashboard View</h2>
-        <p class="view-description">Dashboard content will be implemented in future plans.</p>
+      <div class="dashboard-view">
+        <div class="dashboard-placeholder">
+          <div class="dashboard-placeholder-title">Dashboard View: ${useCaseTitle}</div>
+          <div class="dashboard-placeholder-subtitle">Dashboard UI coming in next plan...</div>
+          <button class="back-to-home-btn" data-action="back-to-home">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            Back to Home
+          </button>
+        </div>
       </div>
     `;
   }
@@ -147,11 +157,26 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
 
   /**
    * Attaches event listeners for the current view
-   * Will be populated in future plans for use-case cards, navigation, etc.
+   * Handles clicks on use-case cards, navigation items, etc.
    */
   function attachViewEventListeners() {
-    // Will be populated in future plans
-    // Handles clicks on use-case cards, navigation items, etc.
+    if (currentView === 'home') {
+      const cards = shadowRootRef.querySelectorAll('.use-case-card');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          const useCaseId = card.dataset.usecase;
+          selectedUseCase = useCaseId;
+          navigateTo('dashboard');
+        });
+      });
+    } else if (currentView === 'dashboard') {
+      const backBtn = shadowRootRef.querySelector('.back-to-home-btn');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
+          navigateTo('home');
+        });
+      }
+    }
   }
 
   /**
@@ -369,6 +394,55 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         font-size: 14px;
         color: #6B7280;
         line-height: 1.5;
+      }
+
+      /* Dashboard View */
+      .dashboard-view {
+        padding: 24px;
+        height: 100%;
+      }
+      .dashboard-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        gap: 16px;
+      }
+      .dashboard-placeholder-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #111827;
+        text-align: center;
+      }
+      .dashboard-placeholder-subtitle {
+        font-size: 16px;
+        color: #6B7280;
+        text-align: center;
+        margin-bottom: 16px;
+      }
+      .back-to-home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: #6366F1;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .back-to-home-btn:hover {
+        background: #4F46E5;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      }
+      .back-to-home-btn svg {
+        width: 18px;
+        height: 18px;
       }
     `;
 
