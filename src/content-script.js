@@ -195,7 +195,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
   // State variables
   let overlayVisible = false;
   let hostElement = null;
-  let backdropElement = null;
   let modalElement = null;
   let shadowRootRef = null;
 
@@ -459,19 +458,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         padding: 0;
       }
 
-      /* Backdrop */
-      .backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 2147483646;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      .backdrop.visible {
-        opacity: 1;
-      }
-
       /* Modal Container (Right-side Sidebar) */
       .modal {
         position: fixed;
@@ -482,7 +468,7 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
         height: 100vh;
         background: linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%);
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
-        z-index: 2147483647;
+        z-index: 2147483500;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease;
@@ -1060,12 +1046,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
       }
     `;
 
-    // Create backdrop
-    const backdrop = document.createElement('div');
-    backdrop.className = 'backdrop';
-    backdrop.addEventListener('click', hideOverlay);
-    backdropElement = backdrop;
-
     // Create modal structure
     const modal = document.createElement('div');
     modal.className = 'modal';
@@ -1113,7 +1093,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
     modalElement = modal;
 
     shadowRoot.appendChild(style);
-    shadowRoot.appendChild(backdrop);
     shadowRoot.appendChild(modal);
 
     return host;
@@ -1133,7 +1112,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        backdropElement.classList.add('visible');
         modalElement.classList.add('open');
         renderCurrentView();
       });
@@ -1148,7 +1126,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
    */
   function hideOverlay() {
     if (modalElement) {
-      backdropElement.classList.remove('visible');
       modalElement.classList.remove('open');
 
       setTimeout(() => {
@@ -1156,7 +1133,6 @@ if (typeof window.democuesOverlayInitialized === 'undefined') {
           hostElement.parentNode.removeChild(hostElement);
         }
         hostElement = null;
-        backdropElement = null;
         modalElement = null;
         shadowRootRef = null;
       }, 300);

@@ -27731,19 +27731,6 @@ Event: `
         padding: 0;
       }
 
-      /* Backdrop */
-      .backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 2147483646;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      .backdrop.visible {
-        opacity: 1;
-      }
-
       /* Modal Container (Right-side Sidebar) */
       .modal {
         position: fixed;
@@ -27754,7 +27741,7 @@ Event: `
         height: 100vh;
         background: linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%);
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
-        z-index: 2147483647;
+        z-index: 2147483500;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease;
@@ -28331,10 +28318,6 @@ Event: `
         color: #DC2626;
       }
     `;
-      const backdrop = document.createElement("div");
-      backdrop.className = "backdrop";
-      backdrop.addEventListener("click", hideOverlay);
-      backdropElement = backdrop;
       const modal = document.createElement("div");
       modal.className = "modal";
       modal.addEventListener("click", (e) => e.stopPropagation());
@@ -28366,7 +28349,6 @@ Event: `
       modal.appendChild(content);
       modalElement = modal;
       shadowRoot.appendChild(style);
-      shadowRoot.appendChild(backdrop);
       shadowRoot.appendChild(modal);
       return host;
     }, showOverlay = function() {
@@ -28377,7 +28359,6 @@ Event: `
       currentView = "home";
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          backdropElement.classList.add("visible");
           modalElement.classList.add("open");
           renderCurrentView();
         });
@@ -28386,14 +28367,12 @@ Event: `
       console.log("Democues: Overlay shown");
     }, hideOverlay = function() {
       if (modalElement) {
-        backdropElement.classList.remove("visible");
         modalElement.classList.remove("open");
         setTimeout(() => {
           if (hostElement && hostElement.parentNode) {
             hostElement.parentNode.removeChild(hostElement);
           }
           hostElement = null;
-          backdropElement = null;
           modalElement = null;
           shadowRootRef = null;
         }, 300);
@@ -28410,7 +28389,6 @@ Event: `
     window.democuesOverlayInitialized = true;
     let overlayVisible = false;
     let hostElement = null;
-    let backdropElement = null;
     let modalElement = null;
     let shadowRootRef = null;
     let currentView = "home";
