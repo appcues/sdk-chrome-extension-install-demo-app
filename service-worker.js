@@ -14,7 +14,7 @@ chrome.action.onClicked.addListener(async (tab) => {
   try {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ['content-script.js']
+      files: ['dist/content-script.js']
     });
   } catch (err) {
     // Script may already be injected, that's OK

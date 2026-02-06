@@ -1,0 +1,19 @@
+{
+  "name": "appcues-extension-demo-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/content-script.js --bundle --outfile=dist/content-script.js --format=iife --target=chrome100",
+    "watch": "esbuild src/content-script.js --bundle --outfile=dist/content-script.js --format=iife --target=chrome100 --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Chrome extension demo with Appcues SDK",
+  "devDependencies": {
+    "esbuild": "^0.27.2"
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "^1.6.0"
+  }
+}
