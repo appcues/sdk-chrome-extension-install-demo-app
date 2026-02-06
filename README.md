@@ -32,9 +32,13 @@ window.Appcues.track('Created New Contact', {
   contactType: 'lead',
   source: 'extension'
 });
+
+// Option 3: Manually show experiences
+// Trigger a specific flow directly by its ID
+window.Appcues.show('flow-id');
 ```
 
-This pattern is familiar to developers building SPAs or mobile apps, so it should be straightforward to implement.
+You can also manually trigger experiences using `window.Appcues.show('flow-id')`. This is useful when you want full control over when a flow appears, such as showing an onboarding flow when a user clicks a button or navigates to a specific view in your extension.
 
 ## Overview
 
@@ -57,7 +61,7 @@ npm install @appcues/web-sdk @webcomponents/custom-elements --save
 
 ### Step 2: Initialize Appcues in Content Script
 
-In your content script, import the polyfill first, then initialize Appcues:
+In your content script, import the polyfill first, then initialize Appcues. See [src/appcues/index.js](src/appcues/index.js) for a working example:
 
 ```javascript
 // IMPORTANT: Import polyfill BEFORE Appcues SDK
