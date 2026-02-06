@@ -1,7 +1,7 @@
-// Service worker for Sales Intelligence Demo extension
+// Service worker for Democues extension
 // This file runs as the extension's background process in Manifest v3
 
-console.log('Sales Intelligence Demo: Service worker initialized');
+console.log('Democues: Service worker initialized');
 
 // Listen for extension install
 chrome.runtime.onInstalled.addListener((details) => {

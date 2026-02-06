@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Sales Intelligence Demo",
+  "name": "Democues",
   "version": "1.0.0",
-  "description": "A demo Chrome extension showing a sales intelligence sidebar UI",
+  "description": "A demo Chrome extension showing Appcues in action",
   "icons": {
     "16": "icons/icon-16.png",
     "48": "icons/icon-48.png",
@@ -13,7 +13,7 @@
       "16": "icons/icon-16.png",
       "48": "icons/icon-48.png"
     },
-    "default_title": "Sales Intelligence Demo"
+    "default_title": "Democues"
   },
   "background": {
     "service_worker": "service-worker.js"
