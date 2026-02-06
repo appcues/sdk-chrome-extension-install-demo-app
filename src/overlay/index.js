@@ -8,8 +8,8 @@ let iframeElement = null;
  * Creates the wrapper div + iframe that hosts the sidebar UI
  */
 function createIframeHost() {
-  const wrapper = document.createElement('div');
-  wrapper.id = 'democues-overlay-host';
+  const wrapper = document.createElement("div");
+  wrapper.id = "democues-overlay-host";
   wrapper.style.cssText = `
     position: fixed;
     top: 0;
@@ -24,7 +24,7 @@ function createIframeHost() {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
   `;
 
-  const iframe = document.createElement('iframe');
+  const iframe = document.createElement("iframe");
   iframe.srcdoc = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@ function createIframeHost() {
 </head>
 <body>
   <div id="app"></div>
-  <script src="${chrome.runtime.getURL('dist/sidebar.js')}"></script>
+  <script src="${chrome.runtime.getURL("dist/sidebar.js")}"></script>
 </body>
 </html>`;
   iframe.style.cssText = `
@@ -41,7 +41,7 @@ function createIframeHost() {
     height: 100%;
     border: none;
   `;
-  iframe.setAttribute('allow', '');
+  iframe.setAttribute("allow", "");
 
   wrapper.appendChild(iframe);
 
@@ -58,25 +58,25 @@ export function showOverlay() {
     iframeElement = result.iframe;
 
     // Listen for messages from iframe
-    window.addEventListener('message', handleIframeMessage);
+    window.addEventListener("message", handleIframeMessage);
   }
 
   document.body.appendChild(wrapperElement);
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      wrapperElement.style.transform = 'translateX(0)';
-      wrapperElement.style.opacity = '1';
+      wrapperElement.style.transform = "translateX(0)";
+      wrapperElement.style.opacity = "1";
 
       // Notify iframe to reset to home view
       if (iframeElement.contentWindow) {
-        iframeElement.contentWindow.postMessage({ type: 'show' }, '*');
+        iframeElement.contentWindow.postMessage({ type: "show" }, "*");
       }
     });
   });
 
   overlayVisible = true;
-  console.log('Democues: Overlay shown');
+  console.log("Democues: Overlay shown");
 }
 
 /**
@@ -84,8 +84,8 @@ export function showOverlay() {
  */
 export function hideOverlay() {
   if (wrapperElement) {
-    wrapperElement.style.transform = 'translateX(100%)';
-    wrapperElement.style.opacity = '0';
+    wrapperElement.style.transform = "translateX(100%)";
+    wrapperElement.style.opacity = "0";
 
     setTimeout(() => {
       if (wrapperElement && wrapperElement.parentNode) {
@@ -93,11 +93,11 @@ export function hideOverlay() {
       }
       wrapperElement = null;
       iframeElement = null;
-      window.removeEventListener('message', handleIframeMessage);
+      window.removeEventListener("message", handleIframeMessage);
     }, 300);
   }
   overlayVisible = false;
-  console.log('Democues: Overlay hidden');
+  console.log("Democues: Overlay hidden");
 }
 
 /**
@@ -118,20 +118,20 @@ function handleIframeMessage(event) {
   if (!event.data || !event.data.type) return;
 
   switch (event.data.type) {
-    case 'close-sidebar':
+    case "close-sidebar":
       hideOverlay();
       break;
-    case 'track-event':
+    case "track-event":
       if (window.Appcues) {
         window.Appcues.track(event.data.event, event.data.properties || {});
       }
       break;
-    case 'update-user':
+    case "update-user":
       if (window.Appcues) {
         window.Appcues.identify(event.data.userId, event.data.properties || {});
       }
       break;
-    case 'show-experience':
+    case "show-experience":
       if (window.Appcues && event.data.experienceId) {
         window.Appcues.show(event.data.experienceId);
       }

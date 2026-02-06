@@ -6,10 +6,10 @@
 // without it the preview mode stop working
 // since we inject the open-builder instance as a saga context field
 // and open-builder injects the appcues-container webcomponent.
-import '@webcomponents/custom-elements';
+import "@webcomponents/custom-elements";
 
-import Appcues from '@appcues/web-sdk';
-import { APPCUES_ACCOUNT_ID, DEFAULT_USER } from './config.js';
+import Appcues from "@appcues/web-sdk";
+import { APPCUES_ACCOUNT_ID, DEFAULT_USER } from "./config.js";
 
 /**
  * Initialize Appcues SDK with account setup and user identification
@@ -18,7 +18,7 @@ import { APPCUES_ACCOUNT_ID, DEFAULT_USER } from './config.js';
 export async function initAppcues() {
   try {
     await Appcues.setup(APPCUES_ACCOUNT_ID, {
-      assetsPath: chrome.runtime.getURL('static/appcues')
+      assetsPath: chrome.runtime.getURL("static/appcues"),
     });
 
     // Identify the user (in production, use real user data)
@@ -28,9 +28,9 @@ export async function initAppcues() {
     // Enable debug mode for development
     window.Appcues.debug();
 
-    console.log('Appcues: Initialized');
+    console.log("Appcues: Initialized");
   } catch (error) {
-    console.error('Appcues: Initialization failed', error);
+    console.error("Appcues: Initialization failed", error);
   }
 }
 

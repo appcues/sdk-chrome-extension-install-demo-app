@@ -1,6 +1,6 @@
 // Home view
 
-import { useCases } from '../data/index.js';
+import { useCases } from "../data/index.js";
 
 /**
  * Renders the Home view content
@@ -12,13 +12,17 @@ export function renderHomeView() {
       <h1 class="home-heading">Choose a use case</h1>
       <p class="home-subheading">Select what you'd like to explore</p>
       <div class="use-cases-grid">
-        ${useCases.map(uc => `
+        ${useCases
+          .map(
+            (uc) => `
           <div class="use-case-card" data-usecase="${uc.id}">
             <div class="use-case-icon">${uc.icon}</div>
             <div class="use-case-title">${uc.title}</div>
             <div class="use-case-description">${uc.description}</div>
           </div>
-        `).join('')}
+        `,
+          )
+          .join("")}
       </div>
     </div>
   `;

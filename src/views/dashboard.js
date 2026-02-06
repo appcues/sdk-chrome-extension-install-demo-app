@@ -1,10 +1,10 @@
 // Dashboard view
 
-import { navItems, useCases } from '../data/index.js';
-import { uploadIcon } from '../icons/index.js';
-import { renderMetricsRow } from './widgets/metrics-row.js';
-import { renderTasksPanel } from './widgets/tasks-panel.js';
-import { renderTransactionsWidget } from './widgets/transactions.js';
+import { navItems, useCases } from "../data/index.js";
+import { uploadIcon } from "../icons/index.js";
+import { renderMetricsRow } from "./widgets/metrics-row.js";
+import { renderTasksPanel } from "./widgets/tasks-panel.js";
+import { renderTransactionsWidget } from "./widgets/transactions.js";
 
 /**
  * Renders the Dashboard view content
@@ -12,17 +12,21 @@ import { renderTransactionsWidget } from './widgets/transactions.js';
  * @returns {string} HTML string for dashboard view
  */
 export function renderDashboardView(selectedUseCase) {
-  const useCaseTitle = useCases.find(uc => uc.id === selectedUseCase)?.title || 'Dashboard';
+  const useCaseTitle = useCases.find((uc) => uc.id === selectedUseCase)?.title || "Dashboard";
   return `
     <div class="dashboard-view">
       <div class="dashboard-sidebar">
         <nav class="sidebar-nav">
-          ${navItems.map(item => `
-            <div class="nav-item ${item.active ? 'active' : ''}" data-nav="${item.id}">
+          ${navItems
+            .map(
+              (item) => `
+            <div class="nav-item ${item.active ? "active" : ""}" data-nav="${item.id}">
               ${item.icon}
               ${item.label}
             </div>
-          `).join('')}
+          `,
+            )
+            .join("")}
         </nav>
       </div>
       <div class="dashboard-main">

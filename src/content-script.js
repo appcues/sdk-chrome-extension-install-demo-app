@@ -11,10 +11,10 @@
  */
 
 // Step 1: Import Appcues SDK helpers
-import { initAppcues } from './appcues/index.js';
+import { initAppcues } from "./appcues/index.js";
 
 // Step 2: Import overlay UI (iframe-based)
-import { toggleOverlay } from './overlay/index.js';
+import { toggleOverlay } from "./overlay/index.js";
 
 // Step 3: Initialize Appcues SDK
 // This sets up Appcues and identifies the current user
@@ -26,12 +26,12 @@ if (!window.democuesOverlayInitialized) {
   window.democuesOverlayInitialized = true;
 
   // Listen for toggle messages from the extension popup/service worker
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === 'toggle-sidebar') {
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.action === "toggle-sidebar") {
       toggleOverlay();
     }
     return true;
   });
 
-  console.log('Democues: Content script initialized');
+  console.log("Democues: Content script initialized");
 }

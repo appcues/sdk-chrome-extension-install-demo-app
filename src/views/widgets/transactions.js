@@ -1,6 +1,6 @@
 // Transactions widget
 
-import { mockTransactions } from '../../data/index.js';
+import { mockTransactions } from "../../data/index.js";
 
 /**
  * Renders the Transactions widget
@@ -18,7 +18,9 @@ export function renderTransactionsWidget() {
         <div class="balance-value">$32,450</div>
       </div>
       <div class="transactions-list">
-        ${mockTransactions.map(tx => `
+        ${mockTransactions
+          .map(
+            (tx) => `
           <div class="transaction-item">
             <div class="transaction-info">
               <div class="transaction-icon">${tx.icon}</div>
@@ -29,7 +31,9 @@ export function renderTransactionsWidget() {
             </div>
             <div class="transaction-amount ${tx.type}">${tx.amount}</div>
           </div>
-        `).join('')}
+        `,
+          )
+          .join("")}
       </div>
     </div>
   `;

@@ -4,12 +4,12 @@
 export const APPCUES_ACCOUNT_ID = process.env.APPCUES_ACCOUNT_ID;
 
 export const DEFAULT_USER = {
-  userId: 'demo-user-002',
+  userId: "demo-user-002",
   properties: {
     createdAt: Date.now(),
-    role: 'Sales Rep',
-    firstName: 'Demo',
-    email: 'demo@example.com',
-    plan: 'Professional'
-  }
+    role: "Sales Rep",
+    firstName: "Demo",
+    email: "demo@example.com",
+    plan: "Professional",
+  },
 };
