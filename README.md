@@ -1,4 +1,4 @@
-# Appcues SDK Integration for Chrome Extensions
+# Install the Appcues SDK in a Chrome extension.
 
 This guide explains how to integrate the Appcues SDK into a Chrome Extension using Manifest V3.
 
