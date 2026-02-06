@@ -16,12 +16,6 @@ export function renderDashboardView(selectedUseCase) {
   return `
     <div class="dashboard-view">
       <div class="dashboard-sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-logo">
-            <div class="sidebar-logo-icon">D</div>
-            Democues
-          </div>
-        </div>
         <nav class="sidebar-nav">
           ${navItems.map(item => `
             <div class="nav-item ${item.active ? 'active' : ''}" data-nav="${item.id}">

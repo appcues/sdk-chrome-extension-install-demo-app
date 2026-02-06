@@ -33,19 +33,16 @@ export const modalStyles = `
     gap: 12px;
   }
   .logo {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);
-    border-radius: 8px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+    flex-shrink: 0;
   }
   .logo svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
+    width: 100%;
+    height: 100%;
   }
   .header-title {
     display: flex;

@@ -16,30 +16,6 @@ export const dashboardStyles = `
     flex-shrink: 0;
     overflow-y: auto;
   }
-  .sidebar-header {
-    padding: 20px 16px;
-    border-bottom: 1px solid #E5E7EB;
-  }
-  .sidebar-logo {
-    font-size: 18px;
-    font-weight: 600;
-    color: #111827;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sidebar-logo-icon {
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-  }
   .sidebar-nav {
     padding: 12px 8px;
     flex: 1;
@@ -88,18 +64,22 @@ export const dashboardStyles = `
     background: #F9FAFB;
   }
   .dashboard-header {
-    padding: 16px 24px;
+    padding: 0 24px;
+    height: 57px;
     background: #FFFFFF;
     border-bottom: 1px solid #E5E7EB;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
   }
   .dashboard-breadcrumb {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 14px;
+    min-width: 0;
+    overflow: hidden;
   }
   .breadcrumb-link {
     color: #6366F1;
@@ -115,10 +95,14 @@ export const dashboardStyles = `
   .breadcrumb-current {
     color: #111827;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .dashboard-actions {
     display: flex;
     gap: 12px;
+    flex-shrink: 0;
   }
   .upload-btn {
     display: flex;

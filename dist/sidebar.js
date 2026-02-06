@@ -43,19 +43,16 @@
     gap: 12px;
   }
   .logo {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);
-    border-radius: 8px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+    flex-shrink: 0;
   }
   .logo svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
+    width: 100%;
+    height: 100%;
   }
   .header-title {
     display: flex;
@@ -200,30 +197,6 @@
     flex-shrink: 0;
     overflow-y: auto;
   }
-  .sidebar-header {
-    padding: 20px 16px;
-    border-bottom: 1px solid #E5E7EB;
-  }
-  .sidebar-logo {
-    font-size: 18px;
-    font-weight: 600;
-    color: #111827;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sidebar-logo-icon {
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-  }
   .sidebar-nav {
     padding: 12px 8px;
     flex: 1;
@@ -272,18 +245,22 @@
     background: #F9FAFB;
   }
   .dashboard-header {
-    padding: 16px 24px;
+    padding: 0 24px;
+    height: 57px;
     background: #FFFFFF;
     border-bottom: 1px solid #E5E7EB;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
   }
   .dashboard-breadcrumb {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 14px;
+    min-width: 0;
+    overflow: hidden;
   }
   .breadcrumb-link {
     color: #6366F1;
@@ -299,10 +276,14 @@
   .breadcrumb-current {
     color: #111827;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .dashboard-actions {
     display: flex;
     gap: 12px;
+    flex-shrink: 0;
   }
   .upload-btn {
     display: flex;
@@ -609,44 +590,9 @@
       active: true
     },
     {
-      id: "reports",
-      label: "Reports",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>'
-    },
-    {
-      id: "tasks",
-      label: "Tasks",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>'
-    },
-    {
-      id: "transactions",
-      label: "Transactions",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>'
-    },
-    {
-      id: "payroll",
-      label: "Payroll",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" /></svg>'
-    },
-    {
-      id: "sales",
-      label: "Sales",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>'
-    },
-    {
       id: "expenses",
       label: "Expenses",
       icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>'
-    },
-    {
-      id: "support",
-      label: "Support",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>'
-    },
-    {
-      id: "subscription",
-      label: "Subscription",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" /></svg>'
     }
   ];
 
@@ -856,12 +802,6 @@
     return `
     <div class="dashboard-view">
       <div class="dashboard-sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-logo">
-            <div class="sidebar-logo-icon">D</div>
-            Democues
-          </div>
-        </div>
         <nav class="sidebar-nav">
           ${navItems.map((item) => `
             <div class="nav-item ${item.active ? "active" : ""}" data-nav="${item.id}">
@@ -970,7 +910,7 @@
     headerLeft.className = "header-left";
     const logo = document.createElement("div");
     logo.className = "logo";
-    logo.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+    logo.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.51 43.6"><path fill="#c3d7ff" d="M34.2,34.1h0c-5.2,5.2-13.7,5.2-18.8,0L3.9,22.7C-1.3,17.5-1.3,9.1,3.9,3.9h0c5.2-5.2,13.7-5.2,18.8,0l11.5,11.5c5.2,5.1,5.2,13.5,0,18.7Z"/><path fill="#2d71ff" d="M45.6,3.9h0c-5.2-5.2-13.7-5.2-18.8,0l-12,11.9c-4.2,4.2-5.2,10.6-2.3,15.5h0l2.3,2.3,1.1,1.1,8.9,8.9.5-.5,8.4-8.4,3.5-3.5,8.5-8.5c5.1-5.2,5.1-13.6-.1-18.8Z"/></svg>`;
     const headerTitle = document.createElement("div");
     headerTitle.className = "header-title";
     const title = document.createElement("span");
