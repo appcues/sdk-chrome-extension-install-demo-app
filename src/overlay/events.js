@@ -1,4 +1,21 @@
 // Event handling for overlay views
+import { experiences } from '../appcues/experiences.js';
+
+function showExperience(experienceId) {
+  if (window.Appcues) {
+    window.Appcues.show(experienceId);
+  } else {
+    window.parent.postMessage({ type: 'show-experience', experienceId }, '*');
+  }
+}
+
+function trackEvent(eventName) {
+  if (window.Appcues) {
+    window.Appcues.track(eventName);
+  } else {
+    window.parent.postMessage({ type: 'track-event', event: eventName }, '*');
+  }
+}
 
 /**
  * Valid view names for the application
@@ -33,6 +50,14 @@ export function attachViewEventListeners(shadowRoot, state, navigateToFn) {
       card.addEventListener('click', () => {
         const useCaseId = card.dataset.usecase;
         state.selectedUseCase = useCaseId;
+
+        const entry = experiences[useCaseId];
+        if (entry?.type === 'track') {
+          trackEvent(entry.event);
+        } else if (typeof entry === 'string') {
+          showExperience(entry);
+        }
+
         navigateToFn('dashboard');
       });
     });
@@ -50,7 +75,10 @@ export function attachViewEventListeners(shadowRoot, state, navigateToFn) {
         // Remove active from all, add to clicked
         navItemElements.forEach(n => n.classList.remove('active'));
         item.classList.add('active');
-        // For demo, we don't actually change content - just visual feedback
+
+        if (item.dataset.nav === 'expenses') {
+          showExperience(experiences.freeTrialConversion);
+        }
       });
     });
 

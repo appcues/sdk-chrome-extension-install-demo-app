@@ -25,7 +25,17 @@ function createIframeHost() {
   `;
 
   const iframe = document.createElement('iframe');
-  iframe.src = chrome.runtime.getURL('sidebar.html');
+  iframe.srcdoc = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="${chrome.runtime.getURL('dist/sidebar.js')}"></script>
+</body>
+</html>`;
   iframe.style.cssText = `
     width: 100%;
     height: 100%;
@@ -119,6 +129,11 @@ function handleIframeMessage(event) {
     case 'update-user':
       if (window.Appcues) {
         window.Appcues.identify(event.data.userId, event.data.properties || {});
+      }
+      break;
+    case 'show-experience':
+      if (window.Appcues && event.data.experienceId) {
+        window.Appcues.show(event.data.experienceId);
       }
       break;
   }
