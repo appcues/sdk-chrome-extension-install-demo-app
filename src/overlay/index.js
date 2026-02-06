@@ -1,59 +1,67 @@
-// Overlay module - main entry point for overlay functionality
+// Overlay module - iframe-based sidebar injection
 
-import { createOverlayHost } from './shadow-dom.js';
-import { navigateTo, attachViewEventListeners } from './events.js';
-import { renderHomeView, renderDashboardView } from '../views/index.js';
-
-// State variables
 let overlayVisible = false;
-let hostElement = null;
-let modalElement = null;
-let shadowRootRef = null;
-
-// View state
-let state = {
-  currentView: 'home',
-  selectedUseCase: null
-};
+let wrapperElement = null;
+let iframeElement = null;
 
 /**
- * Renders the current view into the modal content area
+ * Creates the wrapper div + iframe that hosts the sidebar UI
  */
-function renderCurrentView() {
-  if (!shadowRootRef) return;
-  const contentArea = shadowRootRef.querySelector('.modal-content');
-  if (!contentArea) return;
+function createIframeHost() {
+  const wrapper = document.createElement('div');
+  wrapper.id = 'democues-overlay-host';
+  wrapper.style.cssText = `
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 100vh;
+    z-index: 2147483500;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease;
+    border: none;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  `;
 
-  if (state.currentView === 'home') {
-    contentArea.innerHTML = renderHomeView();
-  } else if (state.currentView === 'dashboard') {
-    contentArea.innerHTML = renderDashboardView(state.selectedUseCase);
-  }
+  const iframe = document.createElement('iframe');
+  iframe.src = chrome.runtime.getURL('sidebar.html');
+  iframe.style.cssText = `
+    width: 100%;
+    height: 100%;
+    border: none;
+  `;
+  iframe.setAttribute('allow', '');
 
-  // Bind navigateTo with current state and render function
-  const navigateToFn = (view) => navigateTo(view, state, renderCurrentView);
-  attachViewEventListeners(shadowRootRef, state, navigateToFn);
+  wrapper.appendChild(iframe);
+
+  return { wrapper, iframe };
 }
 
 /**
  * Shows the overlay with slide-in animation
  */
 export function showOverlay() {
-  if (!hostElement) {
-    const result = createOverlayHost(hideOverlay);
-    hostElement = result.host;
-    shadowRootRef = result.shadowRoot;
-    modalElement = result.modal;
-  }
-  document.body.appendChild(hostElement);
+  if (!wrapperElement) {
+    const result = createIframeHost();
+    wrapperElement = result.wrapper;
+    iframeElement = result.iframe;
 
-  // Reset view to home when opening
-  state.currentView = 'home';
+    // Listen for messages from iframe
+    window.addEventListener('message', handleIframeMessage);
+  }
+
+  document.body.appendChild(wrapperElement);
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      modalElement.classList.add('open');
-      renderCurrentView();
+      wrapperElement.style.transform = 'translateX(0)';
+      wrapperElement.style.opacity = '1';
+
+      // Notify iframe to reset to home view
+      if (iframeElement.contentWindow) {
+        iframeElement.contentWindow.postMessage({ type: 'show' }, '*');
+      }
     });
   });
 
@@ -65,16 +73,17 @@ export function showOverlay() {
  * Hides the overlay with slide-out animation
  */
 export function hideOverlay() {
-  if (modalElement) {
-    modalElement.classList.remove('open');
+  if (wrapperElement) {
+    wrapperElement.style.transform = 'translateX(100%)';
+    wrapperElement.style.opacity = '0';
 
     setTimeout(() => {
-      if (hostElement && hostElement.parentNode) {
-        hostElement.parentNode.removeChild(hostElement);
+      if (wrapperElement && wrapperElement.parentNode) {
+        wrapperElement.parentNode.removeChild(wrapperElement);
       }
-      hostElement = null;
-      modalElement = null;
-      shadowRootRef = null;
+      wrapperElement = null;
+      iframeElement = null;
+      window.removeEventListener('message', handleIframeMessage);
     }, 300);
   }
   overlayVisible = false;
@@ -89,5 +98,28 @@ export function toggleOverlay() {
     hideOverlay();
   } else {
     showOverlay();
+  }
+}
+
+/**
+ * Handles postMessage events from the iframe
+ */
+function handleIframeMessage(event) {
+  if (!event.data || !event.data.type) return;
+
+  switch (event.data.type) {
+    case 'close-sidebar':
+      hideOverlay();
+      break;
+    case 'track-event':
+      if (window.Appcues) {
+        window.Appcues.track(event.data.event, event.data.properties || {});
+      }
+      break;
+    case 'update-user':
+      if (window.Appcues) {
+        window.Appcues.identify(event.data.userId, event.data.properties || {});
+      }
+      break;
   }
 }

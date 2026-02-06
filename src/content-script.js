@@ -7,13 +7,13 @@
  * How to read this code:
  * 1. Appcues SDK is initialized with your account ID
  * 2. A demo user is identified for personalization
- * 3. The overlay UI responds to extension toggle messages
+ * 3. The sidebar UI is loaded in an iframe on toggle
  */
 
 // Step 1: Import Appcues SDK helpers
 import { initAppcues } from './appcues/index.js';
 
-// Step 2: Import overlay UI
+// Step 2: Import overlay UI (iframe-based)
 import { toggleOverlay } from './overlay/index.js';
 
 // Step 3: Initialize Appcues SDK

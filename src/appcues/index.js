@@ -17,16 +17,16 @@ import { APPCUES_ACCOUNT_ID, DEFAULT_USER } from './config.js';
  */
 export async function initAppcues() {
   try {
-    // await Appcues.setup(APPCUES_ACCOUNT_ID, {
-    //   assetsPath: chrome.runtime.getURL('static/appcues')
-    // });
+    await Appcues.setup(APPCUES_ACCOUNT_ID, {
+      assetsPath: chrome.runtime.getURL('static/appcues')
+    });
 
     // Identify the user (in production, use real user data)
     // window.Appcues.identify(DEFAULT_USER.userId, DEFAULT_USER.properties);
-    // window.Appcues.anonymous();
+    window.Appcues.anonymous();
 
     // Enable debug mode for development
-    // window.Appcues.debug();
+    window.Appcues.debug();
 
     console.log('Appcues: Initialized');
   } catch (error) {

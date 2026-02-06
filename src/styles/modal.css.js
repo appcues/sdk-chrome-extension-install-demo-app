@@ -3,31 +3,18 @@
 export const modalStyles = `
   /* Modal Container (Right-side Sidebar) */
   .modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    transform: translateX(100%);
-    width: 600px;
+    width: 100%;
     height: 100vh;
     background: linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    z-index: 2147483500;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    opacity: 0;
-    transition: transform 0.3s ease-out, opacity 0.3s ease;
     display: flex;
     flex-direction: column;
     font-size: 14px;
     line-height: 1.5;
     color: #1F2937;
-    border-radius: 0;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  .modal.open {
-    transform: translateX(0);
-    opacity: 1;
   }
 
   /* Modal Header */

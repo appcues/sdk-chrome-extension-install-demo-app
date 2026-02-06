@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/content-script.js --bundle --outfile=dist/content-script.js --format=iife --target=chrome100",
-    "watch": "esbuild src/content-script.js --bundle --outfile=dist/content-script.js --format=iife --target=chrome100 --watch"
+    "build": "esbuild src/content-script.js --bundle --outfile=dist/content-script.js --format=iife --target=chrome100 && esbuild src/sidebar.js --bundle --outfile=dist/sidebar.js --format=iife --target=chrome100",
+    "watch": "esbuild src/content-script.js --bundle --outfile=dist/content-script.js --format=iife --target=chrome100 --watch & esbuild src/sidebar.js --bundle --outfile=dist/sidebar.js --format=iife --target=chrome100 --watch"
   },
   "keywords": [],
   "author": "",

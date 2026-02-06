@@ -32,7 +32,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["static/*"],
+      "resources": ["sidebar.html", "dist/sidebar.js", "static/*"],
       "matches": ["<all_urls>"]
     }
   ]
