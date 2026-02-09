@@ -20,6 +20,7 @@
     "oxlint": "^1.43.0"
   },
   "dependencies": {
+    "@appcues/web-sdk": "^7.15.0",
     "@webcomponents/custom-elements": "^1.6.0"
   }
 }
