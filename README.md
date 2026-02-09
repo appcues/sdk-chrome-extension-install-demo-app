@@ -197,9 +197,11 @@ mkdir -p static/appcues/styles static/appcues/themes
 cp node_modules/@appcues/web-sdk/build/*.css static/appcues/styles/
 ```
 
-**Note:** Re-run this command when you upgrade the SDK to get updated CSS files.
+> **When to update styles:** These CSS files only need to be re-copied when you upgrade the `@appcues/web-sdk` package version. Creating new experiences, adding custom fonts, or modifying flows in Appcues Studio does NOT require updating these files.
 
 #### 4.3 Save Your Theme Files
+
+> **Before you begin:** Take time to finalize your Theme design in Appcues Studio before proceeding. Any future theme changes will require you to re-download the theme file and publish a new version of your extension. Getting your theme right first will save you from unnecessary releases.
 
 To include your Appcues themes locally, you need to download them from the Appcues API:
 
@@ -227,6 +229,12 @@ curl "https://fast.appcues.com/v1/accounts/YOUR_ACCOUNT_ID/styles/-MVNJiUNUGwd0X
 ```
 
 Repeat this for each theme used by your flows.
+
+> **Important: Themes do NOT update in real-time.** Theme files are bundled statically with your extension. If you modify your theme in Appcues Studio (colors, fonts, spacing, etc.), the changes will NOT appear automatically. You must:
+> 1. Re-download the updated theme JSON file
+> 2. Replace the file in `static/appcues/themes/`
+> 3. Rebuild your extension
+> 4. Publish a new version to the Chrome Web Store
 
 #### 4.4 Configure Web Accessible Resources
 
@@ -331,3 +339,43 @@ From [Appcues CSP Documentation](https://docs.appcues.com/install-appcues-web/fa
 - [Appcues NPM Installation](https://docs.appcues.com/en_US/install-appcues-web/installation-overview-for-developers#installing-from-npm-11)
 - [Appcues CSP FAQ](https://docs.appcues.com/install-appcues-web/faq-content-security-policies)
 - [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
+---
+
+## How to Run This Project Locally
+
+Follow these steps to run this demo extension locally.
+
+### Prerequisites
+
+- Node.js installed
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Configuration
+
+Create a `.env` file in the project root with your Appcues account ID:
+
+```
+APPCUES_ACCOUNT_ID=your-account-id
+```
+
+### Build Commands
+
+- `npm run build` - one-time production build
+- `npm run watch` - development mode with auto-rebuild on file changes
+
+### Load the Extension in Chrome
+
+1. Build the extension: `npm run build`
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable **Developer mode** (toggle in top-right corner)
+4. Click **Load unpacked**
+5. Select this project's root folder
+6. The extension icon will appear in your toolbar
+
+**Tip:** After making code changes and rebuilding, click the refresh icon on the extension card in `chrome://extensions/` to reload. Or use `npm run watch` during development to auto-rebuild on file changes.
