@@ -15,7 +15,7 @@
   "license": "ISC",
   "description": "Chrome extension demo with Appcues SDK",
   "devDependencies": {
-    "esbuild": "^0.27.2",
+    "esbuild": "^0.28.1",
     "oxfmt": "^0.28.0",
     "oxlint": "^1.43.0"
   },
